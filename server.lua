@@ -4,12 +4,12 @@ local signatures = {
     [[\x52\x65\x67\x69\x73\x74\x65\x72\x4e\x65\x74\x45\x76\x65\x6e\x74]],
     [[\x50\x65\x72\x66\x6F\x72\x6d\x48\x74\x74\x70\x52\x65\x71\x75\x65\x73\x74]]
 }
-
+local currentRes = GetCurrentResourceName()
 local function GetResources()
     local resourceList = {}
     for i = 0, GetNumResources(), 1 do
         local resource_name = GetResourceByFindIndex(i)
-        if resource_name and GetResourceState(resource_name) == "started" and resource_name ~= "_cfx_internal" then
+        if resource_name and GetResourceState(resource_name) == "started" and resource_name ~= "_cfx_internal" and resource_name ~= currentRes then
             table.insert(resourceList, resource_name)
         end
     end
